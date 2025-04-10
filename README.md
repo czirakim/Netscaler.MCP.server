@@ -1,5 +1,6 @@
 # Netscaler.MCP.server
 
+![image](https://github.com/user-attachments/assets/bb4362c3-8fb1-4b89-9b40-893e595065f0)
 
 
 This project is an **MCP( Model Context Protocol ) server** designed to interact with Netscaler devices using the **NITRO API (REST)**. It provides a set of tools to manage Netscaler objects such as lbvserver,csvserver, service, server. The server is implemented using the `FastMCP` framework and exposes functionalities for creating, updating, listing, and deleting Netscaler objects.
