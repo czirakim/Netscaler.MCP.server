@@ -14,7 +14,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 env_path = os.path.join(os.path.dirname(__file__), '../.env')
 load_dotenv(env_path)  # load environment variables from .env
 
-
+# list of forbidden objects
+forbidden_objects = ["systemuser"]
 # IP of the Netscaler device
 IP_ADDRESS = os.getenv('IP_ADDRESS')
 # Auth user and password
@@ -74,7 +75,11 @@ class ADCobject:
                     
         """
 
-        url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/"
+         # make sure it can not create a user
+        if(self.object_type in forbidden_objects):
+            url = f"https://{IP_ADDRESS}/nitro/v1"
+        else:
+            url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/"
 
         try:
             response = requests.request("POST", url, headers=headers, json=self.payload, verify=False, timeout=20)
@@ -97,7 +102,11 @@ class ADCobject:
 
         """
 
-        url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}"
+        # make sure it can not update a user
+        if(self.object_type in forbidden_objects):
+            url = f"https://{IP_ADDRESS}/nitro/v1"
+        else:
+            url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}"
 
         try:
             response = requests.request("PATCH", url, headers=headers, json=self.payload, verify=False, timeout=20)
@@ -119,7 +128,12 @@ class ADCobject:
             object_name is the name of teh object to be deleted.
         """
 
-        url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}"
+        # make sure it can not delete a user
+        if(self.object_type in forbidden_objects):
+            url = f"https://{IP_ADDRESS}/nitro/v1"
+        else:
+            url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}"
+   
 
         try:
             response = requests.request("DELETE", url, headers=headers, verify=False, timeout=20)
