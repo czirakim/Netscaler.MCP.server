@@ -1,5 +1,5 @@
 """
-    this is a class for create,update,list or delete and object on an Netscaler device.
+    This is a class for create,update,list or delete and object on an Netscaler device.
     It uses NITRO API (REST) to make  requests to the Netscaler device.
    
 """
@@ -32,7 +32,7 @@ headers = {
 
 class ADCobject:
     
-    """this is a class for create action. It can create vips,pools,irules and profiles.
+    """This is a class for action. It can create lbvserver,csvserver, service, server.
     It uses the  NITRO API (REST) to make POST requests to the Netscaler device and sends data as a payload.
     
     """
@@ -76,7 +76,7 @@ class ADCobject:
                     
         """
 
-         # make sure it can not create a user
+         # make sure it can not create a forbidden object
         if(self.object_type in forbidden_objects):
             url = f"https://{IP_ADDRESS}/nitro/v1"
         else:
@@ -103,7 +103,7 @@ class ADCobject:
 
         """
 
-        # make sure it can not update a user
+        # make sure it can not update a forbidden object
         if(self.object_type in forbidden_objects):
             url = f"https://{IP_ADDRESS}/nitro/v1"
         else:
@@ -129,7 +129,7 @@ class ADCobject:
             object_name is the name of teh object to be deleted.
         """
 
-        # make sure it can not delete a user
+        # make sure it can not delete a forbidden object
         if(self.object_type in forbidden_objects):
             url = f"https://{IP_ADDRESS}/nitro/v1"
         else:
