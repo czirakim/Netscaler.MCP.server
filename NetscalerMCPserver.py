@@ -27,7 +27,7 @@ def list_tool(object_name: str, object_type: str):
 def create_tool(payload: dict, object_type: str):
     """ This tool creates an object on an Netscaler device using NITRO API (REST).
         Args:
-            url_body contains the configuration of the pool. 
+            payload contains the configuration of the pool. 
             object_type can be : lbvserver,csvserver, service, server  
         The configuration of the object is the body for an POST request.        
        
@@ -38,30 +38,31 @@ def create_tool(payload: dict, object_type: str):
 
 
 @mcp.tool()
-def update_tool(url_body: dict, object_type: str, object_name: str):
+def update_tool(payload: dict, object_type: str, object_name: str):
     """ This tool updates an object on an Netscaler device using NITRO API (REST).
         Args:
-            url_body contains the configuration of the pool. 
+            payload contains the configuration of the pool. 
             object_type can be : lbvserver,csvserver, service, server
+            object_name is the name of the object
 
         The configuration of the object is the body for an PATCH request.
        
     """    
     # using python requests
-    update = ADCobject(url_body = url_body, object_type = object_type,object_name = object_name)
+    update = ADCobject(payload=payload, object_type = object_type,object_name = object_name)
     return update.update()
 
 @mcp.tool()
-def delete_tool(url_body: dict, object_type: str, object_name: str):
+def delete_tool(object_type: str, object_name: str):
     """ This tool updates an object on an Netscaler device using NITRO API (REST).
         Args:
-            url_body contains the configuration of the pool. 
             object_type can be : lbvserver,csvserver, service, server
+            object_name is the name of the objec
 
        
     """    
     # using python requests
-    delete = ADCobject(url_body = url_body, object_type = object_type, object_name = object_name)
+    delete = ADCobject(object_type = object_type, object_name = object_name)
     return delete.delete()
 
 if __name__ == "__main__":
