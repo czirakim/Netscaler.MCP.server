@@ -16,6 +16,7 @@ load_dotenv(env_path)  # load environment variables from .env
 
 # list of forbidden objects
 forbidden_objects = ["systemuser"]
+
 # IP of the Netscaler device
 IP_ADDRESS = os.getenv('IP_ADDRESS')
 # Auth user and password
