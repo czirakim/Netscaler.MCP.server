@@ -9,7 +9,7 @@ from mcp.server.fastmcp import FastMCP
 from Tools.NetscalerObject import ADCobject
 
 # Initialize FastMCP server
-mcp = FastMCP("my_ADC_mcp_server")
+mcp = FastMCP("Netscaler_mcp_server")
 
 @mcp.tool()
 def list_tool(object_name: str, object_type: str):
@@ -42,14 +42,14 @@ def update_tool(payload: dict, object_type: str, object_name: str):
     """ This tool updates an object on an Netscaler device using NITRO API (REST).
         Args:
             payload contains the configuration of the pool. 
-            object_type can be : lbvserver,csvserver, service, server
-            object_name is the name of the object
+            object_type can be : lbvserver,csvserver, service, server.
+            object_name is the name of the object.
 
-        The configuration of the object is the body for an PATCH request.
+        The configuration of the object is the body for an PUT request.
        
     """    
     # using python requests
-    update = ADCobject(payload=payload, object_type = object_type,object_name = object_name)
+    update = ADCobject(payload = payload, object_type = object_type,object_name = object_name)
     return update.update()
 
 @mcp.tool()
@@ -57,7 +57,7 @@ def delete_tool(object_type: str, object_name: str):
     """ This tool updates an object on an Netscaler device using NITRO API (REST).
         Args:
             object_type can be : lbvserver,csvserver, service, server
-            object_name is the name of the objec
+            object_name is the name of the object to be deleted.
 
        
     """    
