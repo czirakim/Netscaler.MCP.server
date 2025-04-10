@@ -21,9 +21,7 @@ The repo also contains an example of the Claude desktop app config file.
 
 ### `It was tested with the Claude Desktop app. The MCP server was hosted in Windows WSL.`
 
-
-![Netscaler](https://github.com/user-attachments/assets/c8e63a6e-c968-47ea-842f-173baf08d7b2)
-
+<img width="362" alt="image" src="https://github.com/user-attachments/assets/c8e63a6e-c968-47ea-842f-173baf08d7b2"/>
 
 ### Credits
 This was written by Mihai Cziraki
