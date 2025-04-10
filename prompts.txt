@@ -1,0 +1,16 @@
+### create lb vserver
+can you create a http lbvserver named lb-80-test with ip address 0.0.0.0 , and 2 services: one named web1 with ip 5.5.5.5 on port 8080 and one named web2 with ip 6.6.6.6 and port 80
+
+### create cs vserver
+create a csvserver named ca-80-test with ip 14.14.14.14 on port 80 and bind the lb you created previously
+
+
+### update cs vserver
+can you update the cs vserver ip to be 15.15.15.15?
+
+### delete one of the services
+can you remove service web2 form the lbvserver , do not forger to remove the server too
+
+
+### delete 
+delete the csvserver, lbvserver,services and servers that you have created
