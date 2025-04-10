@@ -124,7 +124,6 @@ class ADCobject:
         """ This tool deletes an object from Netscaler device using NITRO API (REST).
 
         Args:
-            url_body is the configuration of teh object.
             object_type is the type of the object to be created. It can be : lbvserver,csvserver, service, server.                      
             object_name is the name of teh object to be deleted.
         """
