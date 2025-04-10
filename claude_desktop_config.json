@@ -1,0 +1,12 @@
+{
+	"mcpServers": {
+		"NetscalerMcpServer": {
+			"command": "wsl.exe",
+			"args": [
+				"bash",
+				"-c", 
+				"python /full/path/Netscaler/NetscalerMCPserver.py"
+			  ]
+		}
+	}
+}
