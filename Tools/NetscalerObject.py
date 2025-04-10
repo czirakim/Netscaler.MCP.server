@@ -110,7 +110,7 @@ class ADCobject:
             url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}"
 
         try:
-            response = requests.request("PATCH", url, headers=headers, json=self.payload, verify=False, timeout=20)
+            response = requests.request("PUT", url, headers=headers, json=self.payload, verify=False, timeout=20)
             response.raise_for_status()           
         except requests.exceptions.HTTPError:
             if (response.status_code == 400 or response.status_code == 404):
