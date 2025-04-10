@@ -1,5 +1,5 @@
 """
-    This is a class for create,update,list or delete and object on an Netscaler device.
+    this is a class for create,update,list or delete and object on an Netscaler device.
     It uses NITRO API (REST) to make  requests to the Netscaler device.
    
 """
@@ -32,7 +32,7 @@ headers = {
 
 class ADCobject:
     
-    """This is a class for action. It can create lbvserver,csvserver, service, server.
+    """this is a class for create action. It can create vips,pools,irules and profiles.
     It uses the  NITRO API (REST) to make POST requests to the Netscaler device and sends data as a payload.
     
     """
@@ -71,16 +71,16 @@ class ADCobject:
         """This tool creates an object on Netscaler device using NITRO API (REST).         
     
         Args:
-            payload is the configuration of teh object.
+            payload is the configuration of the object.
             object_type is the type of the object to be created. It can be : lbvserver,csvserver, service, server.
                     
         """
 
          # make sure it can not create a forbidden object
         if(self.object_type in forbidden_objects):
-            url = f"https://{IP_ADDRESS}/nitro/v1"
+            url = f"http://{IP_ADDRESS}/nitro/v1"
         else:
-            url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/"
+            url = f"http://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/"
 
         try:
             response = requests.request("POST", url, headers=headers, json=self.payload, verify=False, timeout=20)
@@ -97,7 +97,7 @@ class ADCobject:
         """ This tool updates an object on an Netscaler device using NITRO API (REST).
 
         Args:
-            payload is the configuration of teh object.
+            payload is the configuration of the object.
             object_type is the type of the object to be created. It can be : lbvserver,csvserver, service, server.
             object_name is the name of teh object to be updated.                       
 
