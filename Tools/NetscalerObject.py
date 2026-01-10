@@ -1,9 +1,10 @@
 """
-    this is a class for create,update,list,bind or delete and object on an Netscaler device.
+    this is a class for create,update,list,bind,unbind or delete and object on an Netscaler device.
     It uses NITRO API (REST) to make  requests to the Netscaler device.
    
 """
 
+from operator import contains
 import os
 from dotenv import load_dotenv
 import requests
@@ -42,6 +43,7 @@ class ADCobject:
         self.payload = kwargs.get('payload', None)
         self.object_type = kwargs.get('object_type', None)
         self.object_name = kwargs.get('object_name', None)
+        self.name = kwargs.get('name', None)
     
     def list(self):
         """This tool lists an object on an Netscaler device using NITRO API (REST).         
@@ -152,7 +154,42 @@ class ADCobject:
         except requests.exceptions.RequestException as e:
             return f"An error occurred while making the request: {e}"
         else:
-            return response.text            
+            return response.text      
+
+
+    def unbind(self):
+        """ This tool unbinds an object on an Netscaler device using NITRO API (REST).
+
+        Args:            
+            object_type is the type of the object used to bind. It can be : lbvserver_service_binding, lbvserver_responderpolicy_binding,
+            lbvserver_rewritepolicy_binding, csvserver_lbvserver_binding,csvserver_responderpolicy_binding,csvserver_rewritepolicy_binding,
+            service_binding
+            object_name is the name of the object to be unbound.
+            name is the name binded to the object_name to be unbound. name can be a servicename , a policyname, etc
+                     
+
+        """
+
+        # make sure it can not update a forbidden object
+        if(self.object_type in forbidden_objects):
+            url = f"https://{IP_ADDRESS}/nitro/v1"
+        elif("service" in self.object_type):
+            url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}?args=servicename:{self.name}"
+        elif("policy" in self.object_type):
+            url = f"https://{IP_ADDRESS}/nitro/v1/config/{self.object_type}/{self.object_name}?args=policyname:{self.name}"
+        else:
+            return
+
+        try:
+            response = requests.request("DELETE", url, headers=headers, verify=False, timeout=20)
+            response.raise_for_status()           
+        except requests.exceptions.HTTPError:
+            if (response.status_code == 400 or response.status_code == 404):
+                return f"An error occurred while making the request: {response.text}"
+        except requests.exceptions.RequestException as e:
+            return f"An error occurred while making the request: {e}"
+        else:
+            return response.text              
 
     def delete(self):
         """ This tool deletes an object from Netscaler device using NITRO API (REST).

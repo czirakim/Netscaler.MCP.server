@@ -1,9 +1,9 @@
 ### create lb vserver
 create a http lbvserver named lb-80-test with ip address 10.0.0.1 , and 2 services: one with name  web1 with ip 5.5.5.5 on port 8080 and one with name web2 with ip 6.6.6.6 and port 80
-Bind the the services to the lb vserver.
+Bind the the lb vserver and the services.
 
 ### create cs vserver
-create a csvserver named cs-80-test with ip 14.14.14.14 on port 80 and bind the lb you created previously
+create a csvserver named cs-80-test with ip 14.14.14.14 on port 80 and bind lb-80-test
 
 
 ### update cs vserver

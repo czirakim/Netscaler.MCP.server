@@ -4,7 +4,7 @@ This is a MCP server, that interacts with an Netscaler device using NITRO API (R
 It has tools to create, update, bind, list and delete objects on an Netscaler device.
 create,update,delete are used on objects.
 bind is used to bind objects like services to lb vservers, for example, or monitor to services.
-
+unbind is used to unbind objects like services from lb vservers, for example, or monitor from services.
 
 
 """
@@ -59,7 +59,7 @@ def update_tool(payload: dict, object_type: str, object_name: str):
 
 
 @mcp.tool()
-def bind_tool(payload: dict, object_type: str, object_name: str):
+def bind_tool(payload: dict, object_type: str):
     """ This tool binds an object on an Netscaler device using NITRO API (REST).
 
         Args:
@@ -72,6 +72,22 @@ def bind_tool(payload: dict, object_type: str, object_name: str):
     # using python requests
     bind = ADCobject(payload = payload, object_type = object_type)
     return bind.bind()
+
+@mcp.tool()
+def unbind_tool(object_type: str, object_name: str, name:str):
+    """ This tool unbinds an object on an Netscaler device using NITRO API (REST).
+
+        Args:
+            object_type is the type of the object used to bind to. It can be : lbvserver_service_binding, lbvserver_responderpolicy_binding,
+            lbvserver_rewritepolicy_binding, csvserver_lbvserver_binding,csvserver_responderpolicy_binding,csvserver_rewritepolicy_binding,
+            service_binding
+            object_name is the name of the object to be unbound. 
+            name is the name binded to the object_name to be unbound. name can be a servicename , a policy name, etc
+
+    """  
+    # using python requests
+    unbind = ADCobject(object_type = object_type, object_name = object_name, name = name)
+    return unbind.unbind()
 
 
 @mcp.tool()
