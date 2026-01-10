@@ -2,3 +2,4 @@ requests==2.32.3
 mcp==1.25.0
 python-dotenv==1.2.1
 urllib3==2.0.7
+mcpo==0.0.19
