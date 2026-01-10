@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "NetscalerMcpServer": {
+      "command": "python3",
+      "args": [
+        "/full_path/NetscalerMCPserver.py"
+      ],
+      "cwd": "/full-path",
+      "env": {}
+    }
+  }
+}
