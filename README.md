@@ -25,7 +25,7 @@ The repo also contains an example of the Claude desktop app config file.
 <img width="362" alt="image" src="https://github.com/user-attachments/assets/c8e63a6e-c968-47ea-842f-173baf08d7b2"/>
 
 `You can also use it in Open WebUI by running it via` [mcpo](https://github.com/open-webui/mcpo)
-<br>`mcpo --port 8000 --api-key "api-key-value" -- python3  NetscalerMCPserver.py`
+<br>mcpo --port 8000 --api-key "api-key-value" -- python3  NetscalerMCPserver.py
 
 `But it works even faster if you use tools like Cursor/VS Code or something similar.`
 
