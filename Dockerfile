@@ -6,4 +6,4 @@ COPY . .
 
 EXPOSE 8000
 # Run the application
-CMD ["mcpo", "--port", "8000", "--api-key", "5101ca9bdbabf9be1ace8fba39c298dc", "--", "python3", "NetscalerMCPserver.py"]
+CMD ["mcpo", "--port", "8000", "--api-key", "api-key-value", "--", "python3", "NetscalerMCPserver.py"]
