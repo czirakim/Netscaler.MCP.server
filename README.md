@@ -20,14 +20,14 @@ This project is an **MCP( Model Context Protocol ) server** designed to interact
 
 The repo also contains an example of the Claude desktop app config file.
 
-### `It was tested with the Claude Desktop app. The MCP server was hosted in Windows WSL.`
+`It was tested with the Claude Desktop app. The MCP server was hosted in Windows WSL.`
 
 <img width="362" alt="image" src="https://github.com/user-attachments/assets/c8e63a6e-c968-47ea-842f-173baf08d7b2"/>
 
-`You can also use it in Open WebUI by running it via mcpo:`
+`You can also use it in Open WebUI by running it via [mcpo](https://github.com/open-webui/mcpo):`
 `mcpo --port 8000 --api-key "api-key-value" -- python3  NetscalerMCPserver.py`
 
-`But it works even faster if you use Cursor/VS Code or something similar.`
+`But it works even faster if you use tools like Cursor/VS Code or something similar.`
 
 ### Credits
 This was written by Mihai Cziraki
