@@ -7,7 +7,7 @@ This project is an **MCP( Model Context Protocol ) server** designed to interact
 
 ## Features
 
-- **Tool-Based API**: The project defines tools (`list_tool`, `create_tool`, `update_tool`, `bind_tool`, `delete_tool`) that encapsulate operations on Netscaler devices.
+- **Tool-Based API**: The project defines tools (`list_tool`, `create_tool`, `update_tool`, `bind_tool`, `delete_tool`, `stat_tool`, `nslog_tool`) that encapsulate operations on Netscaler devices.
 - **REST API Integration**: Uses Python's `requests` library to communicate with Netscaler devices via the NITRO API (REST).
 - **Environment Configuration**: Sensitive information like IP addresses and authorization strings are managed through environment variables loaded from a `.env` file.
 - **Extensibility**: Modular design allows additional tools or functionalities to be added easily.

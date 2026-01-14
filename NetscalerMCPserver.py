@@ -15,6 +15,29 @@ from Tools.NetscalerObject import ADCobject
 # Initialize FastMCP server
 mcp = FastMCP("Netscaler_mcp_server")
 
+
+@mcp.tool()
+def stat_tool(object_name: str, object_type: str):
+    """ This tool lists object on an Netscaler device using NITRO API (REST).
+     Args:
+           object_name is the name of the object. 
+           object_type can be : lbvserver,csvserver, service, server
+           Use empty string "" to list all objects of the type.
+    """
+    stat = ADCobject(object_name = object_name, object_type = object_type)
+    return stat.stat()
+
+
+@mcp.tool()
+def nslog_tool():
+    """ This tool lists logs from ns.log file on an Netscaler device using NITRO API (REST). 
+     Args:
+
+    """
+    nslog = ADCobject()
+    return nslog.nslog()
+
+
 @mcp.tool()
 def list_tool(object_name: str, object_type: str):
     """ This tool lists object on an Netscaler device using NITRO API (REST).

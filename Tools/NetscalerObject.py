@@ -4,10 +4,13 @@
    
 """
 
+import json
 from operator import contains
 import os
+import base64
 from dotenv import load_dotenv
 import requests
+import json
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -45,6 +48,57 @@ class ADCobject:
         self.object_name = kwargs.get('object_name', None)
         self.name = kwargs.get('name', None)
     
+
+    def stat(self):
+        """This tool provides stats of an object_name on an Netscaler device using NITRO API (REST).         
+    
+        Args:
+           object_name is the name of the object. 
+           object_type can be : lbvserver,csvserver, service, server
+           Use empty string "" to list all objects of the type, server.
+                    
+        """
+
+        # If object_name is empty or None, list all objects of the type
+        if not self.object_name  == "":
+            url = f"https://{IP_ADDRESS}/nitro/v1/stat/{self.object_type}"
+        else:
+            url = f"https://{IP_ADDRESS}/nitro/v1/stat/{self.object_type}/{self.object_name}"
+
+        try:
+            response = requests.request("GET", url, headers=headers, verify=False, timeout=20)
+            response.raise_for_status()   
+        except requests.exceptions.HTTPError:
+            if (response.status_code == 400 or response.status_code == 404):
+                return f"An error occurred while making the request: {response.text}"
+        except requests.exceptions.RequestException as e:
+            return f"An error occurred while making the request: {e}"
+        else:
+            return response.text
+
+    def nslog(self):
+        """This tool lists logs from ns.log file on an Netscaler device using NITRO API (REST).         
+    
+        Args:                    
+        """
+
+        url = f"https://{IP_ADDRESS}/nitro/v1/config/systemfile/ns.log?args=filelocation:%2Fvar%2Flog"
+
+
+        try:
+            response = requests.request("GET", url, headers=headers, verify=False, timeout=20)
+            response.raise_for_status()  
+            data = response.json()
+            raw_log = base64.b64decode(data['systemfile'][0]['filecontent']).decode('utf-8')
+             
+        except requests.exceptions.HTTPError:
+            if (response.status_code == 400 or response.status_code == 404):
+                return f"An error occurred while making the request: {response.text}"
+        except requests.exceptions.RequestException as e:
+            return f"An error occurred while making the request: {e}"
+        else:
+            return raw_log
+
     def list(self):
         """This tool lists an object on an Netscaler device using NITRO API (REST).         
     
