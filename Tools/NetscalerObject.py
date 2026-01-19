@@ -1,5 +1,5 @@
 """
-    this is a class for create,update,list,bind,unbind or delete and object on an Netscaler device.
+    this is a class for create,update,list,bind,unbind or delete and object, show ns logs or stats on an Netscaler device.
     It uses NITRO API (REST) to make  requests to the Netscaler device.
    
 """
@@ -36,7 +36,7 @@ headers = {
 
 class ADCobject:
     
-    """this is a class for create action. It can create vips,pools,irules and profiles.
+    """this is a class can create lb and cs vservers,services,servers and policies.
     It uses the  NITRO API (REST) to make requests to the Netscaler device and sends data as a payload.
     
     """

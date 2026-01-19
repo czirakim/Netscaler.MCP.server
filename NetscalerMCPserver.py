@@ -1,7 +1,7 @@
 """
 
 This is a MCP server, that interacts with an Netscaler device using NITRO API (REST).
-It has tools to create, update, bind, list and delete objects on an Netscaler device.
+It has tools to create, update, bind, list , delete objects, show ns logs or stats on an Netscaler device.
 create,update,delete are used on objects.
 bind is used to bind objects like services to lb vservers, for example, or monitor to services.
 unbind is used to unbind objects like services from lb vservers, for example, or monitor from services.
